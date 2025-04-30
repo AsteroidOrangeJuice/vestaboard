@@ -145,11 +145,11 @@ class Vestaboard:
             if response.status not in range(200, 299):
                 _LOGGER.error('Read failed with error code %d and message %s', response.status, await response.text())
                 return None
-                
+
             json = await response.json(content_type="text/plain")
-        
+
         return self.decode_lines(json['message'])
-    
+
     @staticmethod
     def encode_lines(lines):
         lines += [''] * (6 - len(lines))
@@ -201,11 +201,9 @@ async def async_setup_entry(hass, config):
 
     await coordinator.async_config_entry_first_refresh()
 
-    hass.async_create_task(
-        hass.config_entries.async_forward_entry_setup(
-            config,
-            "sensor"
-        )
+    await hass.config_entries.async_forward_entry_setups(
+        config,
+        ["sensor"],
     )
 
     async def post(call):
