@@ -14,7 +14,7 @@ Vestaboard is a 6x22 characters connected split flap display for your home or of
 
 Add the repo in HACS:
 
-[![Open your Home Assistant instance and open a repository inside the Home Assistant Community Store.](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?owner=AsteroidOrangeJuice&repository=vestaboard&category=integration)
+[![Open your Home Assistant instance and open a repository inside the Home Assistant Community Store.](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?owner=DanielBaulig&repository=vestaboard&category=integration)
 
 Then install the **Vestaboard** integration from HACS. Set up the integration (you'll need your hostname/IP and API key):
 
