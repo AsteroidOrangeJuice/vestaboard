@@ -9,6 +9,7 @@ from homeassistant.helpers.update_coordinator import (
     DataUpdateCoordinator,
     UpdateFailed,
 )
+import homeassistant.util.dt as dt_util
 
 _LOGGER=logging.getLogger(__name__)
 
@@ -176,6 +177,7 @@ class VestaboardCoordinator(DataUpdateCoordinator):
             update_interval=timedelta(seconds=30)
         )
         self.vestaboard = vestaboard
+        self.last_message_update = None
 
     async def _async_update_data(self):
         async with async_timeout.timeout(10):
@@ -183,6 +185,7 @@ class VestaboardCoordinator(DataUpdateCoordinator):
             if data is None:
                 raise UpdateFailed("Couldn't update vestaboard lines sensor.")
 
+            self.last_message_update = dt_util.utcnow()
             return data
 
 

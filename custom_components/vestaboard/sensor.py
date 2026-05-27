@@ -17,6 +17,13 @@ class VestaboardLineEntity(CoordinatorEntity, SensorEntity):
     def name(self):
         return f"Vestaboard Line {self.line}"
 
+    @property
+    def extra_state_attributes(self):
+        return {
+            "last_updated": self.coordinator.last_message_update,
+            "current_message": self.coordinator.data,
+        }
+
     @callback
     def _handle_coordinator_update(self) -> None:
         self._attr_native_value = self.coordinator.data[self.line]
