@@ -89,6 +89,19 @@ character_map = {
 
 inverted_character_map = {v:k for k,v in character_map.items()}
 
+display_map = {
+    **inverted_character_map,
+    63: '🟥',  # Red
+    64: '🟧',  # Orange
+    65: '🟨',  # Yellow
+    66: '🟩',  # Green
+    67: '🟦',  # Blue
+    68: '🟪',  # Violet
+    69: '⬜',  # White
+    70: '⬛',  # Black
+    71: '🔲',  # Filled
+}
+
 class Vestaboard:
     @staticmethod
     async def enable(host, enablement_token):
@@ -161,7 +174,7 @@ class Vestaboard:
 
     @staticmethod
     def decode_lines(lines):
-        return [ ''.join([inverted_character_map.get(code, '?') for code in line]) for line in lines ]
+        return [ ''.join([display_map.get(code, '?') for code in line]) for line in lines ]
 
     async def write(self, lines):
         async with self.post(self.encode_lines(lines)) as response:
