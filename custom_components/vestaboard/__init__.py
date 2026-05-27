@@ -198,7 +198,8 @@ class VestaboardCoordinator(DataUpdateCoordinator):
             if data is None:
                 raise UpdateFailed("Couldn't update vestaboard lines sensor.")
 
-            self.last_message_update = dt_util.utcnow()
+            if data != self.data:
+                self.last_message_update = dt_util.utcnow()
             return data
 
 
